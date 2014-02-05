@@ -346,6 +346,24 @@ if count($apache_values['vhosts']) > 0 {
         mode    => 0775,
         require => Exec["exec mkdir -p ${vhost['docroot']} @ key ${key}"]
       }
+      file { "${vhost['docroot']}/sites":
+        ensure  => directory,
+        group   => $apache_values['group'],
+        owner   => 'vagrant',
+        mode    => 0775,
+    }
+      file { "${vhost['docroot']}/sites/default":
+        ensure  => directory,
+        group   => $apache_values['group'],
+        owner   => 'vagrant',
+        mode    => 0775,
+  }
+      file { "${vhost['docroot']}/sites/default/files":
+        ensure  => directory,
+        group   => $apache_values['group'],
+        owner   => 'vagrant',
+        mode    => 0775,
+}
     }
   }
 }
